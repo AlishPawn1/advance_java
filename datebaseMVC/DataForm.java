@@ -11,6 +11,7 @@ public class DataForm extends JPanel implements ActionListener, FormViewInterfac
 	private JLabel name, email, height, phone;
 	private JTextField tname, temail, theight, tphone;
 	private JButton submit;
+	public JButton listUsers;
 	private FormController controller;
 	
 	public DataForm() {
@@ -39,33 +40,41 @@ public class DataForm extends JPanel implements ActionListener, FormViewInterfac
 		tphone.setBounds(400, 350, 100, 30);
 		
 		submit = new JButton("Submit");
-		submit.setBounds(500, 500, 100, 30);
+		submit.setBounds(400, 400, 100, 30);
 		
-		add(name);add(tname);add(email);add(temail);add(height);add(theight);add(phone);add(tphone);add(submit);
+		listUsers = new JButton("showUserList");
+		listUsers.setBounds(400, 450, 100, 30);
+		 
+		
+		add(name);add(tname);add(email);add(temail);add(height);
+		add(theight);add(phone);add(tphone);add(submit);add(listUsers);
 		
 		submit.addActionListener(this);
+//		listUsers.addActionListener(this);
 		
 	}
 	
 	public void actionPerformed(ActionEvent e) {
-		String name = tname.getText().toString();
-		String email = temail.getText().toString();
-		String phone = tphone.getText().toString();
-		String height = theight.getText().toString();
-		
-		if(name.isEmpty()) {
-			tname.setBackground(Color.red);
-		}else if(email.isEmpty()) {
-			temail.setBackground(Color.red);
-		}else if(phone.isEmpty()) {
-			tphone.setBackground(Color.red);
-		}else if(height.isEmpty()) {
-			theight.setBackground(Color.red);
-		}else {
-			UserData user = new UserData(name,email, Float.parseFloat(height), Long.parseLong(phone) );
+		if(e.getSource() == submit) {
+			String name = tname.getText().toString();
+			String email = temail.getText().toString();
+			String phone = tphone.getText().toString();
+			String height = theight.getText().toString();
 			
-			// call form controller submit method
-			controller.submitData(user, this);
+			if(name.isEmpty()) {
+				tname.setBackground(Color.red);
+			}else if(email.isEmpty()) {
+				temail.setBackground(Color.red);
+			}else if(phone.isEmpty()) {
+				tphone.setBackground(Color.red);
+			}else if(height.isEmpty()) {
+				theight.setBackground(Color.red);
+			}else {
+				UserData user = new UserData(name,email, Float.parseFloat(height), Long.parseLong(phone) );
+				
+				// call form controller submit method
+				controller.submitData(user, this);
+			}
 		}
 	}
 

@@ -3,7 +3,9 @@ package datebaseMVC;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 
 public class DBConnect {
 	
@@ -16,7 +18,7 @@ public class DBConnect {
 		Class.forName("com.mysql.cj.jdbc.Driver");
 		con = DriverManager.getConnection("jdbc:mysql://localhost:3306/advance_java", "root", "");
 		System.out.println("Database Connection");
-		String sql = "CREATE TABLE IF NOT EXISTS users (id INT PRIMARY KEY AUTO_INCREMENT, name VARCHAR(30), email VARCHAR(30), height DECIMAL(3,2), phone varchar(30))";
+		String sql = "CREATE TABLE IF NOT EXISTS " + formTable +" (id INT PRIMARY KEY AUTO_INCREMENT, name VARCHAR(30), email VARCHAR(30), height DECIMAL(3,2), phone varchar(30))";
 		PreparedStatement stmt = con.prepareStatement(sql);
 		stmt.execute();
 		System.out.println("Table Created");
@@ -39,5 +41,16 @@ public class DBConnect {
 		} catch(Exception e) {
 			callback.onDataEntryFailure(String.valueOf(e));
 		}
+	}
+	public ResultSet retriveUserList() throws SQLException {
+		String sql = "select * from " + formTable;
+		Statement stmt = con.createStatement();
+		return  stmt.executeQuery(sql);		
+	}
+	public ResultSet retriveUserSetUsers() throws Exception {
+		String query = "select * from " + formTable;
+		Statement stmt = con.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_UPDATABLE);
+		ResultSet rs = stmt.executeQuery(query);		
+		return rs;
 	}
 }
