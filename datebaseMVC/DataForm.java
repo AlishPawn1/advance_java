@@ -12,6 +12,7 @@ public class DataForm extends JPanel implements ActionListener, FormViewInterfac
 	private JTextField tname, temail, theight, tphone;
 	private JButton submit;
 	public JButton listUsers;
+	public JButton UpdateUser;
 	private FormController controller;
 	
 	public DataForm() {
@@ -42,15 +43,18 @@ public class DataForm extends JPanel implements ActionListener, FormViewInterfac
 		submit = new JButton("Submit");
 		submit.setBounds(400, 400, 100, 30);
 		
+		UpdateUser = new JButton("Update User");
+		UpdateUser.setBounds(400, 500, 100, 30);
+		
 		listUsers = new JButton("showUserList");
 		listUsers.setBounds(400, 450, 100, 30);
 		 
 		
 		add(name);add(tname);add(email);add(temail);add(height);
-		add(theight);add(phone);add(tphone);add(submit);add(listUsers);
+		add(theight);add(phone);add(tphone);add(submit);add(listUsers);add(UpdateUser);
 		
 		submit.addActionListener(this);
-//		listUsers.addActionListener(this);
+//		UpdateUser.addActionListener(this);
 		
 	}
 	

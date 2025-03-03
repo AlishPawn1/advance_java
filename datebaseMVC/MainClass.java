@@ -5,6 +5,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 
 public class MainClass extends JFrame{
 	
@@ -28,6 +29,17 @@ public class MainClass extends JFrame{
 				add(new ListUsers());
 				setVisible(true);
 //				System.out.println("button clicked");
+			}
+			
+		});
+		
+		dataform.UpdateUser.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+//				dataform.updateTableDatas(new UserData("update", "update@gmail.com", ( float ) 5.6, ( long ) 9874521));
+				JOptionPane.showMessageDialog(null, "Data inserted successfully");
 			}
 			
 		});
