@@ -1,19 +1,13 @@
 package datebaseMVC;
-
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-
 public class DBConnect {
-	
 	public Connection con;
-	
-	private String formTable = "users";
-	
-
+	private String formTable = "user_table";
 	public DBConnect() throws ClassNotFoundException, SQLException {
 		Class.forName("com.mysql.cj.jdbc.Driver");
 		con = DriverManager.getConnection("jdbc:mysql://localhost:3306/advance_java", "root", "");
@@ -23,7 +17,6 @@ public class DBConnect {
 		stmt.execute();
 		System.out.println("Table Created");
 	}
-	
 	public void insertUser(UserData user, DatabaseCallback callback) {
 		try {
 			String sql = "insert into " + formTable + "(name, email, height, phone) VALUES (?, ?, ?, ?)";

@@ -1,43 +1,29 @@
 package datebaseMVC;
-
 import java.sql.ResultSet;
-
 import javax.swing.table.DefaultTableModel;
-
 import com.mysql.cj.jdbc.result.ResultSetMetaData;
-
 public class FormController {
-	
 	private DBConnect db;
 	private ResultSet rs;
-	
 	public FormController() {
 		try {
 			db = new DBConnect();
 		}catch(Exception e){
 			System.out.println(e);
 		}
-		
 	}
-	
 	public void submitData(UserData user, FormViewInterface callback) {
-		db.insertUser(user, new DatabaseCallback() {
-
+		db.insertUser(user, new DatabaseCallback() 		{
 			@Override
 			public void onDataEntrySuccess() {
-				// TODO Auto-generated method stub
 				callback.onSucess();
 			}
-
 			@Override
 			public void onDataEntryFailure(String error) {
-				// TODO Auto-generated method stub
 				callback.onFailure(error);
 			}
-			
 		});
 	}
-	
 	public DefaultTableModel retriveUserData() {
 		DefaultTableModel model = new DefaultTableModel();
 		try {
@@ -49,7 +35,7 @@ public class FormController {
 			rs = db.retriveUserList();
 			while(rs.next()) {
 				model.addRow(new Object[] {
-						rs.getInt(1), rs.getString(2), rs.getString(3), rs.getFloat(4), rs.getString(5)
+					rs.getInt(1), rs.getString(2), rs.getString(3), rs.getFloat(4), rs.getString(5)
 				});
 			}
 		}catch(Exception e) {
@@ -57,7 +43,6 @@ public class FormController {
 		}
 		return model;	
 	}
-	
 	public DefaultTableModel retriveUser() {
 		DefaultTableModel model = new DefaultTableModel();
 		try {
@@ -77,7 +62,6 @@ public class FormController {
 		}
 		return model;
 	}
-	
 	public void updateTableDatas(UserData user) {
 		try {
 			rs.moveToInsertRow();
@@ -86,19 +70,12 @@ public class FormController {
 			rs.updateFloat(4, user.getHeight());
 			rs.updateString(5, String.valueOf(user.getPhone()));
 			rs.insertRow();
-		}catch(Exception e) {
-			
-		}
+		}catch(Exception e) {}
 	}
-	
 	public void deleteRow() {
 		try {
 			rs.last();
 			rs.deleteRow();
-		}catch(Exception e) {
-			
-		}
+		}catch(Exception e) {}
 	}
-	
-	
 }

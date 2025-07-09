@@ -1,11 +1,9 @@
 package datebaseMVC;
-
 public class UserData {
 	private String name;
 	private String email;
 	private float height;
 	private Long phone;
-	
 	public UserData(String name, String email, float height, Long phone) {
 		super();
 		this.name = name;
@@ -13,7 +11,6 @@ public class UserData {
 		this.height = height;
 		this.phone = phone;
 	}
-	
 	public String getName() {
 		return name;
 	}

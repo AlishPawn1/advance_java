@@ -1,18 +1,11 @@
 package datebaseMVC;
-
 import java.awt.BorderLayout;
-
-import javax.swing.JPanel;
-import javax.swing.JScrollPane;
-import javax.swing.JTable;
-
+import javax.swing.*;
 public class ListUsers extends JPanel {
 	private FormController controller;
-	
 	public ListUsers() {
 		setLayout(new BorderLayout());
 		controller = new FormController();
-		
 		try {
 			JTable table = new JTable();
 			table.setModel(controller.retriveUserData());
@@ -26,11 +19,7 @@ public class ListUsers extends JPanel {
 		}catch(Exception e) {
 			System.out.println(e);
 		}
-		
-		
 		controller.updateTableDatas(new UserData("update", "update@gmail.com", ( float ) 5.6, ( long ) 9874521));
 		controller.deleteRow();
 	}
-	
-	
 }
