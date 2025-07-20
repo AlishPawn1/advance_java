@@ -2,23 +2,12 @@ import java.awt.*;
 import javax.swing.*;
 
 public class PanelTest extends JFrame {
-    // private JPanel panel1, panel2;
     
     PanelTest(){
+    	setTitle("Panel Grid");
         setSize(500, 500);
         getContentPane().setBackground(Color.red);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-
-        // border layout
-        // setLayout(new BorderLayout());
-        // panel1 = new JPanel();
-        // getButtonComponets(panel1);
-        // panel2 = new JPanel();  
-        // getButtonComponets(panel2);
-        // add(panel1, BorderLayout.NORTH);
-        // add(panel2, BorderLayout.SOUTH);
-
-        // grid layout
         setLayout(new GridLayout(3, 3)); 
         getPanels();
 

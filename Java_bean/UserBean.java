@@ -8,6 +8,7 @@ public class UserBean implements Serializable {
 	private String email;
 	private int age;
 	
+	public UserBean() {}
 	public String getName() {
 		return name;
 	}
@@ -23,6 +24,8 @@ public class UserBean implements Serializable {
 	public int getAge() {
 		return age;
 	}
+		
+	
 	public void setAge(int age) {
 		this.age = age;
 	}

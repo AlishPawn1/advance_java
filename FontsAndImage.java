@@ -20,19 +20,19 @@ public class FontsAndImage implements ActionListener {
 		jFrame.setSize(600, 600);
         jFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
-        label = new JLabel("This is a dummy text");
+        label = new JLabel("This is newari");
         Font font = new Font(Font.SERIF, Font.PLAIN, 50);
         label.setFont(font);
         jFrame.add(label,BorderLayout.NORTH);
 
         try{
-            BufferedImage image = ImageIO.read(new File("C:\\Users\\alish\\OneDrive\\Pictures\\Screenshots\\Screenshot 2024-02-01 152841.png"));
+            BufferedImage image = ImageIO.read(new File("C:\\Users\\alish\\Downloads\\mission-Rdc.jpg"));
             label1 = new JLabel(new ImageIcon(image));
             jFrame.add(label1,BorderLayout.CENTER);
         }catch(Exception e){
             System.out.println(e);
         }
-        
+         
         button = new JButton("click me"); 
         jFrame.add(button, BorderLayout.SOUTH);
         button.addActionListener(this);

@@ -29,7 +29,6 @@ public class SampleGraphics extends JComponent {
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().add(new SampleGraphics());
 		frame.setSize(800, 800);
-//		frame.add(new JLabel(new ImageIcon("C:\\\\Users\\\\alish\\\\OneDrive\\\\Pictures\\\\Screenshots\\\\Screenshot 2024-02-01 152051.png")));
 		frame.setVisible(true);
 	}
 }

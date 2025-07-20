@@ -1,8 +1,5 @@
 package datebaseMVC;
-
 public interface DatabaseCallback {
-
 	void onDataEntrySuccess();
-	void onDataEntryFailure(String error);
-	
+	void onDataEntryFailure(String error);	
 }
