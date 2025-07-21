@@ -1,7 +1,6 @@
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import java.awt.*;
-import java.awt.event.*;
 import java.sql.*;
 
 public class StudentDBGUI extends JFrame {
@@ -9,15 +8,24 @@ public class StudentDBGUI extends JFrame {
     DefaultTableModel tableModel;
     JTable table;
 
-    final String DB_URL = "jdbc:mysql://localhost:3306/advance_java";
+    final String DB_URL = "jdbc:mysql://localhost:3306/studentdb";
     final String DB_USER = "root";
     final String DB_PASS = "";
+
+    Connection conn;
 
     public StudentDBGUI() {
         setTitle("Student Database");
         setSize(800, 500);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         setLayout(new BorderLayout());
+
+        try {
+            conn = DriverManager.getConnection(DB_URL, DB_USER, DB_PASS);
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(this, "Database connection failed: " + ex.getMessage());
+            System.exit(1);
+        }
 
         // Create Table in DB if it doesn't exist
         createStudentTable();
@@ -60,7 +68,7 @@ public class StudentDBGUI extends JFrame {
 
     // Method to create student table if not exists
     private void createStudentTable() {
-        try (Connection conn = DriverManager.getConnection(DB_URL, DB_USER, DB_PASS)) {
+        try{
             String createSQL = """
                 CREATE TABLE IF NOT EXISTS student (
                     cid INT PRIMARY KEY,
@@ -79,7 +87,7 @@ public class StudentDBGUI extends JFrame {
 
     // Insert data
     private void addStudent() {
-        try (Connection conn = DriverManager.getConnection(DB_URL, DB_USER, DB_PASS)) {
+        try{
             String sql = "INSERT INTO student (cid, name, email, age, address) VALUES (?, ?, ?, ?, ?)";
             PreparedStatement ps = conn.prepareStatement(sql);
             ps.setInt(1, Integer.parseInt(cidField.getText()));
@@ -99,7 +107,7 @@ public class StudentDBGUI extends JFrame {
     // Load records to JTable
     private void loadStudents() {
         tableModel.setRowCount(0); // clear table
-        try (Connection conn = DriverManager.getConnection(DB_URL, DB_USER, DB_PASS)) {
+        try {
             ResultSet rs = conn.createStatement().executeQuery("SELECT * FROM student");
             while (rs.next()) {
                 tableModel.addRow(new Object[]{
